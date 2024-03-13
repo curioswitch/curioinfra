@@ -32,8 +32,8 @@ export class Dns extends Construct {
       type: "TXT",
       ttl: 300,
       rrdatas: [
-        `"google-site-verification=F1MEXE9dJl8B8ggcYK8-cD23Cnl70LyrGzzfUyqjYpg"`,
-        `"v=spf1 include:_spf.google.com ?all"`,
+        '"google-site-verification=F1MEXE9dJl8B8ggcYK8-cD23Cnl70LyrGzzfUyqjYpg"',
+        '"v=spf1 include:_spf.google.com ?all"',
         "hosting-site=curioswitch-prod",
       ],
     });
@@ -49,9 +49,9 @@ export class Dns extends Construct {
     new DnsRecordSet(this, "developers-curioswitch-org", {
       managedZone: curioswitchOrg.name,
       name: "developers.curioswitch.org.",
-      type: "A",
+      type: "CNAME",
       ttl: 300,
-      rrdatas: ["151.101.1.195", "161.101.65.195"],
+      rrdatas: ["curioswitch-developers.web.app."],
     });
 
     new DnsRecordSet(this, "heros-curioswitch-org", {
@@ -68,7 +68,17 @@ export class Dns extends Construct {
       type: "TXT",
       ttl: 3600,
       rrdatas: [
-        `"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCe13ONTkQz3NoTITiTasjfnvTjLRPEK2ltwRW2CrPHqV3J0q0l0Hi7XcDxZ1dHw5ZZaNbv8M3VRJv7hrR2kO/QIQwqbsmNyd0wXoRmauQRp/sJpJBb4aGqCXe/4DplsfsuIAG1UEMIigL/7X0dRnae/ZJfywsEs37bzOacDI1OqwIDAQAB"`,
+        '"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCe13ONTkQz3NoTITiTasjfnvTjLRPEK2ltwRW2CrPHqV3J0q0l0Hi7XcDxZ1dHw5ZZaNbv8M3VRJv7hrR2kO/QIQwqbsmNyd0wXoRmauQRp/sJpJBb4aGqCXe/4DplsfsuIAG1UEMIigL/7X0dRnae/ZJfywsEs37bzOacDI1OqwIDAQAB"',
+      ],
+    });
+
+    new DnsRecordSet(this, "vscode-marketplace", {
+      managedZone: curioswitchOrg.name,
+      name: "_visual-studio-marketplace-curioswitch.curioswitch.org.",
+      type: "TXT",
+      ttl: 3600,
+      rrdatas: [
+        "fc90e6aa-fe3f-4bd6-ac00-b840d589c7be",
       ],
     });
   }
