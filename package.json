@@ -6,7 +6,7 @@
   "license": "MPL-2.0",
   "private": true,
   "scripts": {
-    "format": "prettier --write .",
+    "format": "biome format --write . && prettier --write .",
     "get": "cdktf get",
     "build": "tsc",
     "synth": "cdktf synth",
@@ -28,6 +28,7 @@
     "constructs": "^10.3.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.7.3",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.10",
     "cdktf-cli": "^0.20.7",

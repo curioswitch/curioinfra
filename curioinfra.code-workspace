@@ -2,11 +2,11 @@
   "folders": [
     {
       "name": "/",
-      "path": ".",
-    },
+      "path": "."
+    }
   ],
   "extensions": {
-    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"],
+    "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
   },
   "settings": {
     "eslint.workingDirectories": [{ "mode": "auto" }],
@@ -14,13 +14,22 @@
     "prettier.requireConfig": true,
     "jest.jestCommandLine": "yarn run test",
     "jest.runMode": { "type": "on-demand", "deferred": true },
-    "[javascript][typescript][javascriptreact][json][jsonc][typescriptreact]": {
+    // Multiple language syntax mysteriously doesn't work for all of them.
+    "[javascript][json]": {
       "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[jsonc]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "biomejs.biome"
     },
     "[yaml]": {
       "editor.formatOnSave": true,
-      "editor.defaultFormatter": "esbenp.prettier-vscode",
-    },
-  },
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
 }
