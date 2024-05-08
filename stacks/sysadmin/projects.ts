@@ -1,4 +1,4 @@
-import { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
+import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
 import { Construct } from "constructs";
 import { GcpProject } from "../../constructs/gcp-project";
 

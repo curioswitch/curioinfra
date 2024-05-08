@@ -6,7 +6,7 @@
   "license": "MPL-2.0",
   "private": true,
   "scripts": {
-    "format": "biome format --write . && prettier --write .",
+    "format": "biome format --write . && biome lint --apply-unsafe . && prettier --write .",
     "get": "cdktf get",
     "build": "tsc",
     "synth": "cdktf synth",

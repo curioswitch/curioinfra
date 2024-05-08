@@ -1,5 +1,5 @@
 import { GoogleFirebaseProject } from "@cdktf/provider-google-beta/lib/google-firebase-project";
-import { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
+import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
 import { Project } from "@cdktf/provider-google/lib/project";
 import { ProjectService } from "@cdktf/provider-google/lib/project-service";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";

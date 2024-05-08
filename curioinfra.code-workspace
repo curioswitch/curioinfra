@@ -9,6 +9,10 @@
     "recommendations": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
   },
   "settings": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.biome": "explicit",
+      "quickfix.biome": "explicit"
+    },
     "eslint.workingDirectories": [{ "mode": "auto" }],
     "prettier.configPath": ".prettierrc.yml",
     "prettier.requireConfig": true,

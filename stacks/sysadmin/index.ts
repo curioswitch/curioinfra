@@ -6,7 +6,7 @@ import { ProjectService } from "@cdktf/provider-google/lib/project-service";
 import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";
 import { GcsBackend, TerraformStack } from "cdktf";
-import { Construct } from "constructs";
+import type { Construct } from "constructs";
 import { Dns } from "./dns";
 import { GcpProjects } from "./projects";
 
