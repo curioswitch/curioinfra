@@ -21,9 +21,7 @@ export class Dns extends Construct {
       name: "curioswitch.org.",
       type: "A",
       ttl: 300,
-      rrdatas: [
-        "199.36.158.100",
-      ],
+      rrdatas: ["199.36.158.100"],
     });
 
     new DnsRecordSet(this, "curioswitch-org-txt", {
@@ -77,9 +75,7 @@ export class Dns extends Construct {
       name: "_visual-studio-marketplace-curioswitch.curioswitch.org.",
       type: "TXT",
       ttl: 3600,
-      rrdatas: [
-        "fc90e6aa-fe3f-4bd6-ac00-b840d589c7be",
-      ],
+      rrdatas: ["fc90e6aa-fe3f-4bd6-ac00-b840d589c7be"],
     });
   }
 }
