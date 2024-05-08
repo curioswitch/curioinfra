@@ -18,5 +18,12 @@ export class GcpProjects extends Construct {
       billingAccount: config.billingAccount,
       googleBeta: config.googleBeta,
     });
+
+    new GcpProject(this, {
+      name: "tasuke-dev",
+      orgId: config.orgId,
+      billingAccount: config.billingAccount,
+      googleBeta: config.googleBeta,
+    });
   }
 }
