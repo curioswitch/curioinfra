@@ -67,6 +67,7 @@ export class SysadminStack extends TerraformStack {
     new GcpProjects(this, {
       orgId: org.orgId,
       billingAccount: billing.id,
+      githubOrg: "curioswitch",
       googleBeta: googleBeta,
     });
   }
