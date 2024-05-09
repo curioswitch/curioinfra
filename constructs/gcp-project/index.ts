@@ -50,6 +50,11 @@ export class GcpProject extends Construct {
       },
     });
 
+    new ProjectService(this, "iam", {
+      project: this.project.projectId,
+      service: "iam.googleapis.com",
+    });
+
     new ProjectService(this, "resourcemanager", {
       project: this.project.projectId,
       service: "cloudresourcemanager.googleapis.com",
