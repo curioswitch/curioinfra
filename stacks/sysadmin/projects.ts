@@ -19,6 +19,16 @@ export class GcpProjects extends Construct {
     });
 
     new GcpProject(this, {
+      name: "curioswitch-dev",
+      orgId: config.orgId,
+      billingAccount: config.billingAccount,
+      githubOrg: config.githubOrg,
+      googleBeta: config.googleBeta,
+
+      dependsOn: [iamCredentials],
+    });
+
+    new GcpProject(this, {
       name: "curioswitch-prod",
       orgId: config.orgId,
       billingAccount: config.billingAccount,

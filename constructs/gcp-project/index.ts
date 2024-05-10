@@ -50,7 +50,7 @@ export class GcpProject extends Construct {
       },
     });
 
-    new ProjectService(this, "iam", {
+    const iam = new ProjectService(this, "iam", {
       project: this.project.projectId,
       service: "iam.googleapis.com",
     });
@@ -63,6 +63,7 @@ export class GcpProject extends Construct {
     const idPool = new IamWorkloadIdentityPool(this, "github-pool", {
       project: this.project.projectId,
       workloadIdentityPoolId: "github",
+      dependsOn: [iam],
     });
 
     const idProvider = new IamWorkloadIdentityPoolProvider(
