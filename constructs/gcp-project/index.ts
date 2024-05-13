@@ -60,6 +60,9 @@ export class GcpProject extends Construct {
       service: "cloudresourcemanager.googleapis.com",
     });
 
+    // TODO: Dependencies seem fine but there seems to be a lag between project creation
+    // and being able to create this. Executing apply twice for each project currently
+    // is the workaround.
     const idPool = new IamWorkloadIdentityPool(this, "github-pool", {
       project: this.project.projectId,
       workloadIdentityPoolId: "github",

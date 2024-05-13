@@ -47,5 +47,15 @@ export class GcpProjects extends Construct {
 
       dependsOn: [iamCredentials],
     });
+
+    new GcpProject(this, {
+      name: "tasuke-prod",
+      orgId: config.orgId,
+      billingAccount: config.billingAccount,
+      githubOrg: config.githubOrg,
+      googleBeta: config.googleBeta,
+
+      dependsOn: [iamCredentials],
+    });
   }
 }
