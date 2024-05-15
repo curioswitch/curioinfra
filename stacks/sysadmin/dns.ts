@@ -1,6 +1,7 @@
 import { DnsManagedZone } from "@cdktf/provider-google/lib/dns-managed-zone";
 import { DnsRecordSet } from "@cdktf/provider-google/lib/dns-record-set";
 import { Construct } from "constructs";
+import { DnsZone } from "../../constructs/dns-zone";
 
 export class Dns extends Construct {
   constructor(scope: Construct) {
@@ -76,6 +77,11 @@ export class Dns extends Construct {
       type: "TXT",
       ttl: 3600,
       rrdatas: ["fc90e6aa-fe3f-4bd6-ac00-b840d589c7be"],
+    });
+
+    new DnsZone(this, {
+      domain: "tasuke.dev",
+      delegateProject: "tasuke-prod",
     });
   }
 }

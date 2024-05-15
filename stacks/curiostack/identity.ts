@@ -15,6 +15,10 @@ export class Identity extends Construct {
       service: "identitytoolkit.googleapis.com",
     });
 
+    new ProjectService(this, "iamcredentials", {
+      service: "iamcredentials.googleapis.com",
+    });
+
     const identityPlatform = new IdentityPlatformConfig(
       this,
       "identity-platform",

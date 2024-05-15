@@ -1,3 +1,4 @@
+import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member";
 import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { GcsBackend, TerraformStack } from "cdktf";
 import type { Construct } from "constructs";
@@ -21,6 +22,13 @@ export class CurioStack extends TerraformStack {
       project: config.project,
       region: "asia-northeast1",
       userProjectOverride: true,
+    });
+
+    // Even owner permission does not allow creating impersonation tokens.
+    new ProjectIamMember(this, "sysadmin-token-creator", {
+      project: config.project,
+      role: "roles/iam.serviceAccountTokenCreator",
+      member: "group:sysadmin@curioswitch.org",
     });
 
     new ServiceAccounts(this, {
