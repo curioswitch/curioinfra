@@ -2,6 +2,8 @@ import { GoogleFirebaseProject } from "@cdktf/provider-google-beta/lib/google-fi
 import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
 import { IamWorkloadIdentityPool } from "@cdktf/provider-google/lib/iam-workload-identity-pool";
 import { IamWorkloadIdentityPoolProvider } from "@cdktf/provider-google/lib/iam-workload-identity-pool-provider";
+import { KmsCryptoKey } from "@cdktf/provider-google/lib/kms-crypto-key";
+import { KmsKeyRing } from "@cdktf/provider-google/lib/kms-key-ring";
 import { Project } from "@cdktf/provider-google/lib/project";
 import { ProjectService } from "@cdktf/provider-google/lib/project-service";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";
@@ -91,6 +93,23 @@ export class GcpProject extends Construct {
 
     new TerraformOutput(this, "github-identity-provider", {
       value: idProvider.name,
+    });
+
+    const kmsService = new ProjectService(this, "kms-service", {
+      project: this.project.projectId,
+      service: "cloudkms.googleapis.com",
+    });
+
+    const keyring = new KmsKeyRing(this, "terraform-keyring", {
+      project: this.project.projectId,
+      name: "terraform",
+      location: "global",
+      dependsOn: [kmsService],
+    });
+
+    new KmsCryptoKey(this, "terraform-key", {
+      keyRing: keyring.id,
+      name: "secrets",
     });
   }
 }
