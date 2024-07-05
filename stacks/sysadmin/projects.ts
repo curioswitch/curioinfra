@@ -23,6 +23,8 @@ export class GcpProjects extends Construct {
       orgId: config.orgId,
       billingAccount: config.billingAccount,
       githubOrg: config.githubOrg,
+      infraRepo: "curioinfra",
+      environment: "dev",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
@@ -33,6 +35,8 @@ export class GcpProjects extends Construct {
       orgId: config.orgId,
       billingAccount: config.billingAccount,
       githubOrg: config.githubOrg,
+      infraRepo: "curioinfra",
+      environment: "prod",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
@@ -43,6 +47,8 @@ export class GcpProjects extends Construct {
       orgId: config.orgId,
       billingAccount: config.billingAccount,
       githubOrg: config.githubOrg,
+      infraRepo: "tasukeinfra",
+      environment: "dev",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
@@ -53,6 +59,8 @@ export class GcpProjects extends Construct {
       orgId: config.orgId,
       billingAccount: config.billingAccount,
       githubOrg: config.githubOrg,
+      infraRepo: "tasukeinfra",
+      environment: "prod",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],

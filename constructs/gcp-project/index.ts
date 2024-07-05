@@ -8,6 +8,7 @@ import { Project } from "@cdktf/provider-google/lib/project";
 import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member";
 import { ProjectService } from "@cdktf/provider-google/lib/project-service";
 import { ServiceAccount } from "@cdktf/provider-google/lib/service-account";
+import { ServiceAccountIamMember } from "@cdktf/provider-google/lib/service-account-iam-member";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";
 import { type ITerraformDependable, TerraformOutput } from "cdktf";
 import { Construct } from "constructs";
@@ -18,6 +19,8 @@ interface GcpProjectConfig {
   name: string;
   googleBeta: GoogleBetaProvider;
   githubOrg: string;
+  infraRepo: string;
+  environment: string;
 
   dependsOn?: ITerraformDependable[];
 }
@@ -125,6 +128,12 @@ export class GcpProject extends Construct {
       member: terraformAdmin.member,
     });
 
+    new ServiceAccountIamMember(this, "terraform-admin-github-actions", {
+      serviceAccountId: terraformAdmin.name,
+      role: "roles/iam.serviceAccountTokenCreator",
+      member: `principal://iam.googleapis.com/${idPool.name}/subject/repo:${config.githubOrg}/${config.infraRepo}:environment:${config.environment}`,
+    });
+
     const terraformViewer = new ServiceAccount(this, "terraform-viewer", {
       project: this.project.projectId,
       accountId: "terraform-viewer",
@@ -134,6 +143,12 @@ export class GcpProject extends Construct {
       project: this.project.projectId,
       role: "roles/viewer",
       member: terraformViewer.member,
+    });
+
+    new ServiceAccountIamMember(this, "terraform-viewer-github-actions", {
+      serviceAccountId: terraformAdmin.name,
+      role: "roles/iam.serviceAccountTokenCreator",
+      member: `principal://iam.googleapis.com/${idPool.name}/subject/repo:${config.githubOrg}/${config.infraRepo}:environment:${config.environment}-viewer`,
     });
   }
 }
