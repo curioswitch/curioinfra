@@ -5,7 +5,9 @@ import { IamWorkloadIdentityPoolProvider } from "@cdktf/provider-google/lib/iam-
 import { KmsCryptoKey } from "@cdktf/provider-google/lib/kms-crypto-key";
 import { KmsKeyRing } from "@cdktf/provider-google/lib/kms-key-ring";
 import { Project } from "@cdktf/provider-google/lib/project";
+import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member";
 import { ProjectService } from "@cdktf/provider-google/lib/project-service";
+import { ServiceAccount } from "@cdktf/provider-google/lib/service-account";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";
 import { type ITerraformDependable, TerraformOutput } from "cdktf";
 import { Construct } from "constructs";
@@ -110,6 +112,28 @@ export class GcpProject extends Construct {
     new KmsCryptoKey(this, "terraform-key", {
       keyRing: keyring.id,
       name: "secrets",
+    });
+
+    const terraformAdmin = new ServiceAccount(this, "terraform-admin", {
+      project: this.project.projectId,
+      accountId: "terraform-admin",
+    });
+
+    new ProjectIamMember(this, "terraform-admin-owner", {
+      project: this.project.projectId,
+      role: "roles/owner",
+      member: terraformAdmin.member,
+    });
+
+    const terraformViewer = new ServiceAccount(this, "terraform-viewer", {
+      project: this.project.projectId,
+      accountId: "terraform-viewer",
+    });
+
+    new ProjectIamMember(this, "terraform-viewer-viewer", {
+      project: this.project.projectId,
+      role: "roles/viewer",
+      member: terraformViewer.member,
     });
   }
 }
