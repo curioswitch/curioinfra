@@ -25,7 +25,7 @@
     "@cdktf/provider-github": "^14.2.3",
     "@cdktf/provider-google": "^13.17.0",
     "@cdktf/provider-google-beta": "^13.16.0",
-    "@curioswitch/usecdk": "git://github.com/curioswitch/usecdk.git#main",
+    "@curioswitch/tfcdk-constructs": "git://github.com/curioswitch/tfcdk-constructs.git#main",
     "cdktf": "^0.20.7",
     "constructs": "^10.3.0"
   },

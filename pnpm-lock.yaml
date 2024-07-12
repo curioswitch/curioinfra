@@ -14,9 +14,9 @@ dependencies:
   '@cdktf/provider-google-beta':
     specifier: ^13.16.0
     version: 13.16.0(cdktf@0.20.7)(constructs@10.3.0)
-  '@curioswitch/usecdk':
-    specifier: git://github.com/curioswitch/usecdk.git#main
-    version: github.com/curioswitch/usecdk/59569f50c2f9d59367090358ac622070bbe719aa
+  '@curioswitch/tfcdk-constructs':
+    specifier: git://github.com/curioswitch/tfcdk-constructs.git#main
+    version: github.com/curioswitch/tfcdk-constructs/b899bc9d16dec204e9fb5fbab7824487f4e0753c
   cdktf:
     specifier: ^0.20.7
     version: 0.20.7(constructs@10.3.0)
@@ -5624,9 +5624,9 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: true
 
-  github.com/curioswitch/usecdk/59569f50c2f9d59367090358ac622070bbe719aa:
-    resolution: {tarball: https://codeload.github.com/curioswitch/usecdk/tar.gz/59569f50c2f9d59367090358ac622070bbe719aa}
-    name: '@curioswitch/usecdk'
+  github.com/curioswitch/tfcdk-constructs/b899bc9d16dec204e9fb5fbab7824487f4e0753c:
+    resolution: {tarball: https://codeload.github.com/curioswitch/tfcdk-constructs/tar.gz/b899bc9d16dec204e9fb5fbab7824487f4e0753c}
+    name: '@curioswitch/tfcdk-constructs'
     version: 0.0.1
     engines: {node: '>=18.0'}
     dependencies:
