@@ -5,12 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@cdktf/provider-github':
+    specifier: ^14.2.3
+    version: 14.2.3(cdktf@0.20.7)(constructs@10.3.0)
   '@cdktf/provider-google':
     specifier: ^13.17.0
     version: 13.17.0(cdktf@0.20.7)(constructs@10.3.0)
   '@cdktf/provider-google-beta':
     specifier: ^13.16.0
     version: 13.16.0(cdktf@0.20.7)(constructs@10.3.0)
+  '@curioswitch/usecdk':
+    specifier: git://github.com/curioswitch/usecdk.git#main
+    version: github.com/curioswitch/usecdk/59569f50c2f9d59367090358ac622070bbe719aa
   cdktf:
     specifier: ^0.20.7
     version: 0.20.7(constructs@10.3.0)
@@ -640,6 +646,28 @@ packages:
       - supports-color
     dev: true
 
+  /@cdktf/provider-github@14.2.3(cdktf@0.20.7)(constructs@10.3.0):
+    resolution: {integrity: sha512-/JTXEdty0/3JjRTMQjEoAS2IjyrJ2CtRs1Co6daweZ9EP9rPJ9hO2i9vu8Kh8J1V7Yx6IywdiJgoAseidA51PA==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      cdktf: ^0.20.0
+      constructs: ^10.3.0
+    dependencies:
+      cdktf: 0.20.7(constructs@10.3.0)
+      constructs: 10.3.0
+    dev: false
+
+  /@cdktf/provider-github@14.2.3(cdktf@0.20.8)(constructs@10.3.0):
+    resolution: {integrity: sha512-/JTXEdty0/3JjRTMQjEoAS2IjyrJ2CtRs1Co6daweZ9EP9rPJ9hO2i9vu8Kh8J1V7Yx6IywdiJgoAseidA51PA==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      cdktf: ^0.20.0
+      constructs: ^10.3.0
+    dependencies:
+      cdktf: 0.20.8(constructs@10.3.0)
+      constructs: 10.3.0
+    dev: false
+
   /@cdktf/provider-google-beta@13.16.0(cdktf@0.20.7)(constructs@10.3.0):
     resolution: {integrity: sha512-QHRke4nUapf1/hIVh0K/LG6zpnI12gTJz7zhF0ywX/DzYHSgDIpfzRkBawK+NmU7V5ZF3LZAPvKYG51DYEu5QQ==}
     engines: {node: '>= 18.12.0'}
@@ -651,6 +679,17 @@ packages:
       constructs: 10.3.0
     dev: false
 
+  /@cdktf/provider-google-beta@13.19.0(cdktf@0.20.8)(constructs@10.3.0):
+    resolution: {integrity: sha512-C17F1hmuiW5A7ThkCUTTqpLgOiOKcKvh0xOZ7l06Bciy5QPaZjUnZQJFWbVF+5qRLXpxTXQNNss4oA9+Cls4KQ==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      cdktf: ^0.20.0
+      constructs: ^10.3.0
+    dependencies:
+      cdktf: 0.20.8(constructs@10.3.0)
+      constructs: 10.3.0
+    dev: false
+
   /@cdktf/provider-google@13.17.0(cdktf@0.20.7)(constructs@10.3.0):
     resolution: {integrity: sha512-OvfT/LVk39OE3A87mjT4u5lD7VKQqk8eYYXWNvuLpJAUgIeOIcJxzcADszDbczooANf2zogs61Z9QofQjjOmVA==}
     engines: {node: '>= 18.12.0'}
@@ -659,6 +698,17 @@ packages:
       constructs: ^10.3.0
     dependencies:
       cdktf: 0.20.7(constructs@10.3.0)
+      constructs: 10.3.0
+    dev: false
+
+  /@cdktf/provider-google@13.26.0(cdktf@0.20.8)(constructs@10.3.0):
+    resolution: {integrity: sha512-jreZAcOfHz8k81X//8SwqQOHndPEtDkQsfh0lo2n3u0Tc6H7QlU6RsJQ+AoHjTAR+xK7+jfJ7JzEPLw/v54YIQ==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      cdktf: ^0.20.0
+      constructs: ^10.3.0
+    dependencies:
+      cdktf: 0.20.8(constructs@10.3.0)
       constructs: 10.3.0
     dev: false
 
@@ -1853,6 +1903,18 @@ packages:
       - json-stable-stringify
       - semver
 
+  /cdktf@0.20.8(constructs@10.3.0):
+    resolution: {integrity: sha512-O4O5h0b1E6scc/tqq9EUIQGDbPmdrCQpdkPdbDtUHHzhZGtmFpIMc5MgP1SgB+EzAutnG2oUDefjCqWMnhDe9A==}
+    peerDependencies:
+      constructs: ^10.3.0
+    dependencies:
+      constructs: 10.3.0
+    dev: false
+    bundledDependencies:
+      - archiver
+      - json-stable-stringify
+      - semver
+
   /chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -2309,7 +2371,7 @@ packages:
     dependencies:
       semver: 7.6.1
       shelljs: 0.8.5
-      typescript: 5.5.0-dev.20240507
+      typescript: 5.6.0-dev.20240712
     dev: true
 
   /eastasianwidth@0.2.0:
@@ -5230,8 +5292,8 @@ packages:
     hasBin: true
     dev: true
 
-  /typescript@5.5.0-dev.20240507:
-    resolution: {integrity: sha512-5LtqwNqq8gx+AD5pTThWksRzORSFBNdUGmndlPmQ/fa34MY/1vsE5A/sFM6JD29X8uFiATeIJQepsO+l+tRJ0A==}
+  /typescript@5.6.0-dev.20240712:
+    resolution: {integrity: sha512-8Iu/vFdWrjtqSm31Dcp4rFgybCNdjMJVZFoWF6PlzEYE6M6eiA+TeKGgygspCbnErrBRjHgWrEMdP3LavHtQ+w==}
     engines: {node: '>=14.17'}
     hasBin: true
     dev: true
@@ -5561,3 +5623,16 @@ packages:
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: true
+
+  github.com/curioswitch/usecdk/59569f50c2f9d59367090358ac622070bbe719aa:
+    resolution: {tarball: https://codeload.github.com/curioswitch/usecdk/tar.gz/59569f50c2f9d59367090358ac622070bbe719aa}
+    name: '@curioswitch/usecdk'
+    version: 0.0.1
+    engines: {node: '>=18.0'}
+    dependencies:
+      '@cdktf/provider-github': 14.2.3(cdktf@0.20.8)(constructs@10.3.0)
+      '@cdktf/provider-google': 13.26.0(cdktf@0.20.8)(constructs@10.3.0)
+      '@cdktf/provider-google-beta': 13.19.0(cdktf@0.20.8)(constructs@10.3.0)
+      cdktf: 0.20.8(constructs@10.3.0)
+      constructs: 10.3.0
+    dev: false

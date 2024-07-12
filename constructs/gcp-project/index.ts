@@ -3,6 +3,7 @@ import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provide
 import { IamWorkloadIdentityPool } from "@cdktf/provider-google/lib/iam-workload-identity-pool";
 import { IamWorkloadIdentityPoolProvider } from "@cdktf/provider-google/lib/iam-workload-identity-pool-provider";
 import { KmsCryptoKey } from "@cdktf/provider-google/lib/kms-crypto-key";
+import { KmsCryptoKeyIamMember } from "@cdktf/provider-google/lib/kms-crypto-key-iam-member";
 import { KmsKeyRing } from "@cdktf/provider-google/lib/kms-key-ring";
 import { Project } from "@cdktf/provider-google/lib/project";
 import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member";
@@ -10,6 +11,7 @@ import { ProjectService } from "@cdktf/provider-google/lib/project-service";
 import { ServiceAccount } from "@cdktf/provider-google/lib/service-account";
 import { ServiceAccountIamMember } from "@cdktf/provider-google/lib/service-account-iam-member";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";
+import { StorageBucketIamMember } from "@cdktf/provider-google/lib/storage-bucket-iam-member";
 import { type ITerraformDependable, TerraformOutput } from "cdktf";
 import { Construct } from "constructs";
 
@@ -21,6 +23,7 @@ interface GcpProjectConfig {
   githubOrg: string;
   infraRepo: string;
   environment: string;
+  devProject?: string;
 
   dependsOn?: ITerraformDependable[];
 }
@@ -47,7 +50,7 @@ export class GcpProject extends Construct {
       provider: config.googleBeta,
     });
 
-    new StorageBucket(this, "tfstate", {
+    const tfState = new StorageBucket(this, "tfstate", {
       project: this.project.projectId,
       name: `${this.project.projectId}-tfstate`,
       location: "US",
@@ -112,7 +115,7 @@ export class GcpProject extends Construct {
       dependsOn: [kmsService],
     });
 
-    new KmsCryptoKey(this, "terraform-key", {
+    const terraformKey = new KmsCryptoKey(this, "terraform-key", {
       keyRing: keyring.id,
       name: "secrets",
     });
@@ -145,10 +148,48 @@ export class GcpProject extends Construct {
       member: terraformViewer.member,
     });
 
+    // It's expected to view certain dev resources from prod, for example for delegating DNS.
+    // Prod is a stricter project, so it is fine to provide viewer access to everything in dev
+    // from it.
+    if (config.devProject) {
+      new ProjectIamMember(this, "terraform-viewer-viewer-dev", {
+        project: config.devProject,
+        role: "roles/viewer",
+        member: terraformViewer.member,
+      });
+    }
+
+    new ProjectIamMember(this, "terraform-viewer-serviceUser", {
+      project: this.project.projectId,
+      role: "roles/serviceusage.serviceUsageConsumer",
+      member: terraformViewer.member,
+    });
+
+    new KmsCryptoKeyIamMember(this, "terraform-viewer-key-decrypter", {
+      cryptoKeyId: terraformKey.id,
+      role: "roles/cloudkms.cryptoOperator",
+      member: terraformViewer.member,
+    });
+
+    new ProjectIamMember(this, "terraform-viewer-key-secretaccess", {
+      project: this.project.projectId,
+      role: "roles/secretmanager.secretAccessor",
+      member: terraformViewer.member,
+    });
+
     new ServiceAccountIamMember(this, "terraform-viewer-github-actions", {
-      serviceAccountId: terraformAdmin.name,
+      serviceAccountId: terraformViewer.name,
       role: "roles/iam.serviceAccountTokenCreator",
       member: `principal://iam.googleapis.com/${idPool.name}/subject/repo:${config.githubOrg}/${config.infraRepo}:environment:${config.environment}-viewer`,
+    });
+
+    // Need write permission to the state to take lock. While ideally we may use a different bucket, but
+    // there is no such option. Generally we use permissions to protect against access to the infrastructure
+    // itself and not the state so this is probably acceptable.
+    new StorageBucketIamMember(this, "terraform-viewer-tfstate", {
+      bucket: tfState.name,
+      role: "roles/storage.objectUser",
+      member: terraformViewer.member,
     });
   }
 }

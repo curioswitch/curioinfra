@@ -32,6 +32,7 @@ export class GcpProjects extends Construct {
 
     new GcpProject(this, {
       name: "curioswitch-prod",
+      devProject: "curioswitch-dev",
       orgId: config.orgId,
       billingAccount: config.billingAccount,
       githubOrg: config.githubOrg,
@@ -56,6 +57,7 @@ export class GcpProjects extends Construct {
 
     new GcpProject(this, {
       name: "tasuke-prod",
+      devProject: "tasuke-dev",
       orgId: config.orgId,
       billingAccount: config.billingAccount,
       githubOrg: config.githubOrg,

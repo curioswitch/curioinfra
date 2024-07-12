@@ -1,3 +1,4 @@
+import { GithubProvider } from "@cdktf/provider-github/lib/provider";
 import { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
 import { DataGoogleBillingAccount } from "@cdktf/provider-google/lib/data-google-billing-account";
 import { DataGoogleOrganization } from "@cdktf/provider-google/lib/data-google-organization";
@@ -9,6 +10,7 @@ import { GcsBackend, TerraformStack } from "cdktf";
 import type { Construct } from "constructs";
 import { Dns } from "./dns";
 import { GcpProjects } from "./projects";
+import { Repos } from "./repos";
 
 const projectName = "curioswitch-sysadmin";
 const stateBucket = "curioswitch-sysadmin-tfstate";
@@ -19,6 +21,10 @@ export class SysadminStack extends TerraformStack {
 
     new GcsBackend(this, {
       bucket: stateBucket,
+    });
+
+    new GithubProvider(this, "github", {
+      owner: "curioswitch",
     });
 
     new GoogleProvider(this, "google", {
@@ -70,5 +76,7 @@ export class SysadminStack extends TerraformStack {
       githubOrg: "curioswitch",
       googleBeta: googleBeta,
     });
+
+    new Repos(this);
   }
 }
