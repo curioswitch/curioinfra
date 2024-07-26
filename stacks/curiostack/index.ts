@@ -2,8 +2,8 @@ import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member"
 import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { GcsBackend, TerraformStack } from "cdktf";
 import type { Construct } from "constructs";
-import { Identity } from "./identity";
-import { ServiceAccounts } from "./service-accounts";
+import { Identity } from "./identity.js";
+import { ServiceAccounts } from "./service-accounts.js";
 
 export interface CurioStackConfig {
   project: string;

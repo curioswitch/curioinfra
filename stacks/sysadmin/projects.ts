@@ -1,7 +1,7 @@
 import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
 import { ProjectService } from "@cdktf/provider-google/lib/project-service";
 import { Construct } from "constructs";
-import { GcpProject } from "../../constructs/gcp-project";
+import { GcpProject } from "../../constructs/gcp-project/index.js";
 
 interface GcpProjectsConfig {
   orgId: string;

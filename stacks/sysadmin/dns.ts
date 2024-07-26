@@ -1,7 +1,7 @@
 import { DnsManagedZone } from "@cdktf/provider-google/lib/dns-managed-zone";
 import { DnsRecordSet } from "@cdktf/provider-google/lib/dns-record-set";
 import { Construct } from "constructs";
-import { DnsZone } from "../../constructs/dns-zone";
+import { DnsZone } from "../../constructs/dns-zone/index.js";
 
 export class Dns extends Construct {
   constructor(scope: Construct) {

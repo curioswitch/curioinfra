@@ -8,9 +8,9 @@ import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
 import { StorageBucket } from "@cdktf/provider-google/lib/storage-bucket";
 import { GcsBackend, TerraformStack } from "cdktf";
 import type { Construct } from "constructs";
-import { Dns } from "./dns";
-import { GcpProjects } from "./projects";
-import { Repos } from "./repos";
+import { Dns } from "./dns.js";
+import { GcpProjects } from "./projects.js";
+import { Repos } from "./repos.js";
 
 const projectName = "curioswitch-sysadmin";
 const stateBucket = "curioswitch-sysadmin-tfstate";

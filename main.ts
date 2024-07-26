@@ -1,6 +1,6 @@
 import { App } from "cdktf";
-import { CurioStack } from "./stacks/curiostack";
-import { SysadminStack } from "./stacks/sysadmin";
+import { CurioStack } from "./stacks/curiostack/index.js";
+import { SysadminStack } from "./stacks/sysadmin/index.js";
 
 const app = new App();
 
