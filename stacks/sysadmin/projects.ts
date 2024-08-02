@@ -1,7 +1,8 @@
 import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
+import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member/index.js";
 import { ProjectService } from "@cdktf/provider-google/lib/project-service";
+import { GcpProject } from "@curioswitch/cdktf-constructs";
 import { Construct } from "constructs";
-import { GcpProject } from "../../constructs/gcp-project/index.js";
 
 interface GcpProjectsConfig {
   orgId: string;
@@ -19,53 +20,55 @@ export class GcpProjects extends Construct {
     });
 
     new GcpProject(this, {
-      name: "curioswitch-dev",
-      orgId: config.orgId,
-      billingAccount: config.billingAccount,
-      githubOrg: config.githubOrg,
-      infraRepo: "curioinfra",
-      environment: "dev",
+      projectId: "curioswitch-dev",
+      organizationId: config.orgId,
+      billingAccountId: config.billingAccount,
+      githubInfraRepo: `${config.githubOrg}/curioinfra`,
+      githubEnvironment: "dev",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
     });
 
     new GcpProject(this, {
-      name: "curioswitch-prod",
-      devProject: "curioswitch-dev",
-      orgId: config.orgId,
-      billingAccount: config.billingAccount,
-      githubOrg: config.githubOrg,
-      infraRepo: "curioinfra",
-      environment: "prod",
+      projectId: "curioswitch-prod",
+      organizationId: config.orgId,
+      billingAccountId: config.billingAccount,
+      githubInfraRepo: `${config.githubOrg}/curioinfra`,
+      githubEnvironment: "prod",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
     });
 
-    new GcpProject(this, {
-      name: "tasuke-dev",
-      orgId: config.orgId,
-      billingAccount: config.billingAccount,
-      githubOrg: config.githubOrg,
-      infraRepo: "tasukeinfra",
-      environment: "dev",
+    const tasukeDev = new GcpProject(this, {
+      projectId: "tasuke-dev",
+      organizationId: config.orgId,
+      billingAccountId: config.billingAccount,
+      githubInfraRepo: `${config.githubOrg}/tasukeinfra`,
+      githubEnvironment: "dev",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
     });
 
-    new GcpProject(this, {
-      name: "tasuke-prod",
-      devProject: "tasuke-dev",
-      orgId: config.orgId,
-      billingAccount: config.billingAccount,
-      githubOrg: config.githubOrg,
-      infraRepo: "tasukeinfra",
-      environment: "prod",
+    const tasukeProd = new GcpProject(this, {
+      projectId: "tasuke-prod",
+      organizationId: config.orgId,
+      billingAccountId: config.billingAccount,
+      githubInfraRepo: `${config.githubOrg}/tasukeinfra`,
+      githubEnvironment: "prod",
       googleBeta: config.googleBeta,
 
       dependsOn: [iamCredentials],
+    });
+
+    // We read dev DNS nameservers from prod project for
+    // setting up delegation.
+    new ProjectIamMember(this, "tasuke-prod-viewer-dev-viewer", {
+      project: tasukeDev.project.projectId,
+      role: "roles/viewer",
+      member: tasukeProd.terraformViewerServiceAccount.member,
     });
   }
 }

@@ -35,7 +35,6 @@ export class DnsZone extends Construct {
         ],
       },
     });
-    zone.importFrom(`${config.domain.replace(".", "-")}`);
 
     const delegateNameservers = new DataGoogleDnsRecordSet(
       this,
@@ -54,6 +53,6 @@ export class DnsZone extends Construct {
       type: "NS",
       ttl: 21600,
       rrdatas: delegateNameservers.rrdatas,
-    }).importFrom(`${config.domain.replace(".", "-")}/${config.domain}./NS`);
+    });
   }
 }
