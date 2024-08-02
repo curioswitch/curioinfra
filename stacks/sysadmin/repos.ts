@@ -35,7 +35,7 @@ export class Repos extends Construct {
     });
 
     new GitHubRepository(this, {
-      name: "tasukeinfra",
+      name: "tasuke-infra",
       adminTeam: admins.id,
       repositoryConfig: {
         hasDownloads: false,

@@ -45,7 +45,7 @@ export class GcpProjects extends Construct {
       projectId: "tasuke-dev",
       organizationId: config.orgId,
       billingAccountId: config.billingAccount,
-      githubInfraRepo: `${config.githubOrg}/tasukeinfra`,
+      githubInfraRepo: `${config.githubOrg}/tasuke-infra`,
       githubEnvironment: "dev",
       googleBeta: config.googleBeta,
 
@@ -56,7 +56,7 @@ export class GcpProjects extends Construct {
       projectId: "tasuke-prod",
       organizationId: config.orgId,
       billingAccountId: config.billingAccount,
-      githubInfraRepo: `${config.githubOrg}/tasukeinfra`,
+      githubInfraRepo: `${config.githubOrg}/tasuke-infra`,
       githubEnvironment: "prod",
       googleBeta: config.googleBeta,
 
