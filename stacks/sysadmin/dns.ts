@@ -1,3 +1,4 @@
+import { DataGoogleDnsRecordSet } from "@cdktf/provider-google/lib/data-google-dns-record-set/index.js";
 import { DnsManagedZone } from "@cdktf/provider-google/lib/dns-managed-zone";
 import { DnsRecordSet } from "@cdktf/provider-google/lib/dns-record-set";
 import { Construct } from "constructs";
@@ -82,6 +83,21 @@ export class Dns extends Construct {
     new DnsZone(this, {
       domain: "tasuke.dev",
       delegateProject: "tasuke-prod",
+    });
+
+    const aiceoNS = new DataGoogleDnsRecordSet(this, "aiceo-ns", {
+      project: "aiceo-prod",
+      managedZone: "aiceo-curioswitch-org",
+      type: "NS",
+      name: "aiceo.curioswitch.org.",
+    });
+
+    new DnsRecordSet(this, "aiceo-delegate-ns", {
+      managedZone: curioswitchOrg.name,
+      name: "aiceo.curioswitch.org.",
+      type: "NS",
+      ttl: 21600,
+      rrdatas: aiceoNS.rrdatas,
     });
   }
 }

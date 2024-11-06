@@ -10,7 +10,6 @@ import { GcsBackend, TerraformStack } from "cdktf";
 import type { Construct } from "constructs";
 import { Dns } from "./dns.js";
 import { GcpProjects } from "./projects.js";
-import { Repos } from "./repos.js";
 
 const projectName = "curioswitch-sysadmin";
 const stateBucket = "curioswitch-sysadmin-tfstate";
@@ -76,7 +75,5 @@ export class SysadminStack extends TerraformStack {
       githubOrg: "curioswitch",
       googleBeta: googleBeta,
     });
-
-    new Repos(this);
   }
 }
