@@ -1,6 +1,6 @@
 {
   "language": "typescript",
-  "app": "pnpm tsx main.ts",
+  "app": "bun run main.ts",
   "projectId": "478c0d20-40a2-4917-a4e3-5bfcff051ff6",
   "sendCrashReports": "true",
   "terraformProviders": [],

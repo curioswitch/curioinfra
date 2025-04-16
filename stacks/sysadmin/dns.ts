@@ -87,17 +87,32 @@ export class Dns extends Construct {
 
     const aiceoNS = new DataGoogleDnsRecordSet(this, "aiceo-ns", {
       project: "aiceo-prod",
-      managedZone: "aiceo-curioswitch-org",
+      managedZone: "minnano-shacho-curioswitch-org",
       type: "NS",
-      name: "aiceo.curioswitch.org.",
+      name: "minnano-shacho.curioswitch.org.",
     });
 
     new DnsRecordSet(this, "aiceo-delegate-ns", {
       managedZone: curioswitchOrg.name,
-      name: "aiceo.curioswitch.org.",
+      name: "minnano-shacho.curioswitch.org.",
       type: "NS",
       ttl: 21600,
       rrdatas: aiceoNS.rrdatas,
+    });
+
+    const cookchatNS = new DataGoogleDnsRecordSet(this, "cookchat-ns", {
+      project: "cookchat-prod",
+      managedZone: "cookchat-curioswitch-org",
+      type: "NS",
+      name: "cookchat.curioswitch.org.",
+    });
+
+    new DnsRecordSet(this, "cookchat-delegate-ns", {
+      managedZone: curioswitchOrg.name,
+      name: "cookchat.curioswitch.org.",
+      type: "NS",
+      ttl: 21600,
+      rrdatas: cookchatNS.rrdatas,
     });
   }
 }

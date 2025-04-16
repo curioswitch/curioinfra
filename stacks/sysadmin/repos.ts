@@ -1,4 +1,4 @@
-import { ActionsSecret } from "@cdktf/provider-github/lib/actions-secret/index.js";
+import { ActionsOrganizationSecret } from "@cdktf/provider-github/lib/actions-organization-secret/index.js";
 import { DataGoogleKmsSecret } from "@cdktf/provider-google/lib/data-google-kms-secret/index.js";
 import type { KmsCryptoKey } from "@cdktf/provider-google/lib/kms-crypto-key/index.js";
 import { Construct } from "constructs";
@@ -21,10 +21,10 @@ export class Repos extends Construct {
       },
     );
 
-    new ActionsSecret(this, "go-build-curioswitch-app-key", {
-      repository: "go-build",
+    new ActionsOrganizationSecret(this, "curioswitch-app-key-secret", {
       secretName: "CURIOSWITCH_APP_KEY",
       plaintextValue: curioswitchAppKey.plaintext,
+      visibility: "all",
     });
   }
 }
