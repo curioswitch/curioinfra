@@ -72,6 +72,14 @@ export class Dns extends Construct {
       ],
     });
 
+    new DnsRecordSet(this, "_dmarc", {
+      managedZone: curioswitchOrg.name,
+      name: "_dmarc.curioswitch.org.",
+      type: "TXT",
+      ttl: 3600,
+      rrdatas: ['"v=DMARC1; p=none; rua=mailto:dmarc@curioswitch.org"'],
+    });
+
     new DnsRecordSet(this, "vscode-marketplace", {
       managedZone: curioswitchOrg.name,
       name: "_visual-studio-marketplace-curioswitch.curioswitch.org.",
