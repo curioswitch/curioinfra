@@ -1,7 +1,7 @@
-import type { GoogleBetaProvider } from "@cdktf/provider-google-beta/lib/provider";
-import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member/index.js";
-import { ProjectService } from "@cdktf/provider-google/lib/project-service";
-import { GcpProject } from "@curioswitch/cdktf-constructs";
+import type { GoogleBetaProvider } from "@cdktn/provider-google-beta/lib/provider/index.js";
+import { ProjectIamMember } from "@cdktn/provider-google/lib/project-iam-member/index.js";
+import { ProjectService } from "@cdktn/provider-google/lib/project-service/index.js";
+import { GcpProject } from "@curioswitch/cdktn-constructs";
 import { Construct } from "constructs";
 
 interface GcpProjectsConfig {

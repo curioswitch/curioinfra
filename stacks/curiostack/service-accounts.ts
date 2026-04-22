@@ -1,5 +1,5 @@
-import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member";
-import { ServiceAccount } from "@cdktf/provider-google/lib/service-account";
+import { ProjectIamMember } from "@cdktn/provider-google/lib/project-iam-member/index.js";
+import { ServiceAccount } from "@cdktn/provider-google/lib/service-account/index.js";
 import { Construct } from "constructs";
 
 export interface ServiceAccountsConfig {

@@ -1,6 +1,6 @@
-import { DataGoogleDnsRecordSet } from "@cdktf/provider-google/lib/data-google-dns-record-set/index.js";
-import { DnsManagedZone } from "@cdktf/provider-google/lib/dns-managed-zone";
-import { DnsRecordSet } from "@cdktf/provider-google/lib/dns-record-set";
+import { DataGoogleDnsRecordSet } from "@cdktn/provider-google/lib/data-google-dns-record-set/index.js";
+import { DnsManagedZone } from "@cdktn/provider-google/lib/dns-managed-zone/index.js";
+import { DnsRecordSet } from "@cdktn/provider-google/lib/dns-record-set/index.js";
 import { Construct } from "constructs";
 import { DnsZone } from "../../constructs/dns-zone/index.js";
 

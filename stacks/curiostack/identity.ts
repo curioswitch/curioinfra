@@ -1,6 +1,6 @@
-import { IdentityPlatformConfig } from "@cdktf/provider-google/lib/identity-platform-config";
-import { IdentityPlatformTenant } from "@cdktf/provider-google/lib/identity-platform-tenant";
-import { ProjectService } from "@cdktf/provider-google/lib/project-service";
+import { IdentityPlatformConfig } from "@cdktn/provider-google/lib/identity-platform-config/index.js";
+import { IdentityPlatformTenant } from "@cdktn/provider-google/lib/identity-platform-tenant/index.js";
+import { ProjectService } from "@cdktn/provider-google/lib/project-service/index.js";
 import { Construct } from "constructs";
 
 export interface IdentityConfig {
