@@ -1,6 +1,6 @@
-import { ActionsOrganizationSecret } from "@cdktf/provider-github/lib/actions-organization-secret/index.js";
-import { DataGoogleKmsSecret } from "@cdktf/provider-google/lib/data-google-kms-secret/index.js";
-import type { KmsCryptoKey } from "@cdktf/provider-google/lib/kms-crypto-key/index.js";
+import { ActionsOrganizationSecret } from "@cdktn/provider-github/lib/actions-organization-secret/index.js";
+import { DataGoogleKmsSecret } from "@cdktn/provider-google/lib/data-google-kms-secret/index.js";
+import type { KmsCryptoKey } from "@cdktn/provider-google/lib/kms-crypto-key/index.js";
 import { Construct } from "constructs";
 
 export interface ReposConfig {

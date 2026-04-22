@@ -1,6 +1,6 @@
-import { ProjectIamMember } from "@cdktf/provider-google/lib/project-iam-member";
-import { GoogleProvider } from "@cdktf/provider-google/lib/provider";
-import { GcsBackend, TerraformStack } from "cdktf";
+import { ProjectIamMember } from "@cdktn/provider-google/lib/project-iam-member/index.js";
+import { GoogleProvider } from "@cdktn/provider-google/lib/provider/index.js";
+import { GcsBackend, TerraformStack } from "cdktn";
 import type { Construct } from "constructs";
 import { Identity } from "./identity.js";
 import { ServiceAccounts } from "./service-accounts.js";

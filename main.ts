@@ -1,4 +1,4 @@
-import { App } from "cdktf";
+import { App } from "cdktn";
 import { CurioStack } from "./stacks/curiostack/index.js";
 import { SysadminStack } from "./stacks/sysadmin/index.js";
 

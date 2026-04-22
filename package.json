@@ -5,7 +5,7 @@
   "license": "MPL-2.0",
   "private": true,
   "scripts": {
-    "format": "biome format --write . && biome lint --write --unsafe . && prettier --write '**/*.yaml' '**/*.md'",
+    "format": "biome check --write --unsafe . && prettier --write '**/*.yaml' '**/*.md'",
     "lint": "biome check . && prettier --check '**/*.yaml' '**/*.md'"
   },
   "engines": {
@@ -13,17 +13,17 @@
   },
   "packageManager": "bun@1.2.2",
   "dependencies": {
-    "@cdktf/provider-github": "^14.3.1",
-    "@cdktf/provider-google": "^13.32.1",
-    "@cdktf/provider-google-beta": "^13.25.1",
-    "@curioswitch/cdktf-constructs": "github:curioswitch/cdktf-constructs#main",
-    "cdktf": "^0.20.11",
-    "constructs": "^10.4.2"
+     "@cdktn/provider-github": "^16.0.0",
+    "@cdktn/provider-google": "^17.0.0",
+    "@cdktn/provider-google-beta": "^17.0.0",
+    "@curioswitch/cdktn-constructs": "github:curioswitch/cdktn-constructs#main",
+    "cdktn": "^0.23.0-pre.29",
+    "constructs": "^10.6.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome":"^2.4.12",
     "@types/jest": "^29.5.14",
     "@types/node": "^20.17.6",
-    "cdktf-cli": "^0.20.11"
+    "cdktn-cli": "^0.23.0-pre.29"
   }
 }
